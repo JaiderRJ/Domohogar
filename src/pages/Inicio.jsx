@@ -1,15 +1,9 @@
 import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Hammer, PaintBucket, Briefcase, Cpu, Home, Send, Phone, Mail, MapPin } from "lucide-react";
+import { Hammer, PaintBucket, Briefcase, Cpu, Home } from "lucide-react";
 
 function Inicio() {
-  const contactRef = useRef(null);
-
-  const scrollToContact = () => {
-    contactRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
     <div>
 
@@ -26,14 +20,16 @@ function Inicio() {
             <p style={subtitle}>Transformamos tu espacio en un hogar del futuro. Confort, seguridad y eficiencia al alcance de tu mano.</p>
 
             <div style={{ marginTop: "40px" }}>
-              <motion.button
-                style={btn}
+              <motion.a
+                href="https://wa.me/573236596646"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ ...btn, textDecoration: "none", display: "inline-block" }}
                 whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(0,188,212,0.6)" }}
                 whileTap={{ scale: 0.95 }}
-                onClick={scrollToContact}
               >
                 Solicitar Cotización
-              </motion.button>
+              </motion.a>
             </div>
 
           </motion.div>
@@ -104,71 +100,6 @@ function Inicio() {
               Desde la conceptualización hasta la ejecución, nuestro equipo de expertos te acompaña en cada paso para asegurar que tu visión se haga realidad.
             </p>
           </motion.div>
-        </div>
-      </section>
-
-      {/* CONTACTO */}
-      <section style={contactSection} ref={contactRef}>
-        <div style={contactContainer}>
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            style={{ textAlign: "center", marginBottom: "50px" }}
-          >
-            <h2 style={{ fontSize: "36px", marginBottom: "20px", color: "#fff" }}>Contáctanos</h2>
-            <p style={{ color: "#aaa", fontSize: "18px" }}>¿Listo para transformar tu hogar? Escríbenos.</p>
-          </motion.div>
-
-          <div style={contactGrid}>
-
-            {/* Información */}
-            <motion.div
-              style={contactInfo}
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              <div style={infoItem}>
-                <Phone size={24} color="#00bcd4" />
-                <span>+57 300 123 4567</span>
-              </div>
-              <div style={infoItem}>
-                <Mail size={24} color="#00bcd4" />
-                <span>contacto@domogar.com</span>
-              </div>
-              <div style={infoItem}>
-                <MapPin size={24} color="#00bcd4" />
-                <span>Calle 123 # 45 - 67, Barranquilla</span>
-              </div>
-            </motion.div>
-
-            {/* Formulario */}
-            <motion.form
-              style={form}
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              onSubmit={(e) => e.preventDefault()}
-            >
-              <div style={inputGroup}>
-                <input type="text" placeholder="Tu Nombre" style={input} />
-              </div>
-              <div style={inputGroup}>
-                <input type="email" placeholder="Tu Correo" style={input} />
-              </div>
-              <div style={inputGroup}>
-                <textarea placeholder="¿En qué podemos ayudarte?" style={{ ...input, height: "120px", resize: "none" }}></textarea>
-              </div>
-              <button style={submitBtn}>
-                Enviar Mensaje <Send size={18} style={{ marginLeft: "10px" }} />
-              </button>
-            </motion.form>
-
-          </div>
         </div>
       </section>
 
@@ -262,13 +193,13 @@ const card = {
   borderRadius: "20px",
   border: "1px solid rgba(255,255,255,0.05)",
   textAlign: "center",
-  cursor: "pointer", // Changed to pointer
+  cursor: "pointer",
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
   justifyContent: "flex-start",
   minHeight: "280px",
-  height: "100%", // Ensure full height anchor
+  height: "100%",
   boxSizing: "border-box"
 };
 
@@ -313,80 +244,6 @@ const aboutText = {
   lineHeight: "1.8",
   color: "#ccc",
   marginBottom: "20px"
-};
-
-// CONTACT STYLES
-const contactSection = {
-  padding: "100px 20px",
-  background: "#080808",
-  borderTop: "1px solid rgba(255,255,255,0.05)"
-};
-
-const contactContainer = {
-  maxWidth: "1000px",
-  margin: "0 auto"
-};
-
-const contactGrid = {
-  display: "grid",
-  gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-  gap: "50px",
-  alignItems: "start"
-};
-
-const contactInfo = {
-  display: "flex",
-  flexDirection: "column",
-  gap: "30px",
-  padding: "20px",
-  background: "rgba(255,255,255,0.02)",
-  borderRadius: "15px",
-  border: "1px solid rgba(255,255,255,0.05)"
-};
-
-const infoItem = {
-  display: "flex",
-  alignItems: "center",
-  gap: "20px",
-  color: "#eee",
-  fontSize: "18px"
-};
-
-const form = {
-  display: "flex",
-  flexDirection: "column",
-  gap: "20px"
-};
-
-const inputGroup = {
-  width: "100%"
-};
-
-const input = {
-  width: "100%",
-  padding: "15px",
-  background: "rgba(255,255,255,0.05)",
-  border: "1px solid rgba(255,255,255,0.1)",
-  borderRadius: "10px",
-  color: "white",
-  fontSize: "16px",
-  outline: "none",
-  transition: "border 0.3s ease",
-};
-
-const submitBtn = {
-  background: "#00bcd4",
-  color: "white",
-  padding: "15px",
-  border: "none",
-  borderRadius: "10px",
-  fontSize: "18px",
-  fontWeight: "bold",
-  cursor: "pointer",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  transition: "background 0.3s ease"
 };
 
 export default Inicio;
